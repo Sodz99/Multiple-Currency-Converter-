@@ -3,9 +3,15 @@ import java.util.Scanner;
 public class CurrencyConverter {
 
     static double curr2Amt;
-    static double euroRate = 0.912545;
-    static double usdRate = 1.10035;
+
     static double usdinrRate = 82.7584;
+    static double usdeurRate =  0.912791;
+
+    static double eurusdRate =  1.0950336;
+    static double eurinrRate =  90.853657;
+
+    static double inrusdRate = 0.012051641;
+    static double inreurRate =  0.01100664;
 
     public static void main(String[] args) {
 
@@ -25,36 +31,56 @@ public class CurrencyConverter {
         switch (currency1) {
             case "USD":
                 switch (currency2) {
-
-                    case "EUR":
-                        System.out.println(eurConvertor(curr1Amt));
-                        break;
-
-                    case "INR":
-                        System.out.println(inrConvertor(curr1Amt));
-                        break;
+                    case "EUR" -> System.out.println(getUsdEurRate(curr1Amt));
+                    case "INR" -> System.out.println(getUsdinrRate(curr1Amt));
                 }
             break;
 
             case "EUR":
-                System.out.println(usdConvertor(curr1Amt));
+                switch (currency2) {
+                    case "USD" -> System.out.println(getEurUsdRate(curr1Amt));
+                    case "INR" -> System.out.println(getEurInrRate(curr1Amt));
+                }
+            break;
+
+            case "INR":
+                switch (currency2) {
+                    case "USD" -> System.out.println(getInrUsdRate(curr1Amt));
+                    case "EUR" -> System.out.println(getInrEurRate(curr1Amt));
+                }
+            break;
 
         }
     }
 
-
-    public static double eurConvertor(double curr1Amt) {
-        curr2Amt = curr1Amt * euroRate;
+    public static double getUsdEurRate(double curr1Amt) {
+        curr2Amt = curr1Amt * usdeurRate;
         return curr2Amt;
     }
 
-    public static double usdConvertor(double curr1Amt) {
-        curr2Amt = curr1Amt * usdRate;
-        return curr2Amt;
-    }
-
-    public static double inrConvertor(double curr1Amt) {
+    public static double getUsdinrRate(double curr1Amt) {
         curr2Amt = curr1Amt * usdinrRate;
         return curr2Amt;
     }
+
+    public static double getEurUsdRate(double curr1Amt) {
+        curr2Amt = curr1Amt * eurusdRate;
+        return curr2Amt;
+    }
+
+    public static double getEurInrRate(double curr1Amt) {
+        curr2Amt = curr1Amt * eurinrRate;
+        return curr2Amt;
+    }
+
+    public static double getInrUsdRate(double curr1Amt) {
+        curr2Amt = curr1Amt * inrusdRate;
+        return curr2Amt;
+    }
+
+    public static double getInrEurRate(double curr1Amt) {
+        curr2Amt = curr1Amt * inreurRate;
+        return curr2Amt;
+    }
+
 }
